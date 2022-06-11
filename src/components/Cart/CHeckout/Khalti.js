@@ -1,14 +1,12 @@
 import React from "react";
 import KhaltiCheckout from "khalti-checkout-web";
 import myKey from "./KhaltiKey";
-import { createPayment } from "../../redux/actions/paymentaction";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 export default function Khalti({
     cart,
     address
 }) {
-    const dispatch = useDispatch();
+   
     const navigate = useNavigate();
     let config = {
         publicKey: myKey.publicTestKey,
@@ -17,9 +15,7 @@ export default function Khalti({
         productUrl: "http://localhost:3000/cart",
         eventHandler: {
             onSuccess() {
-                let paymentID = "KhaltiPay_" + Math.floor(Math.random() * 1000000);
-                dispatch(createPayment(cart, paymentID, address));
-                navigate("/food");
+                console.log("Success")
             },
             onError(error) {
                 // handle errors
