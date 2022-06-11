@@ -58,7 +58,7 @@ const SearchBarSection = () => {
 
   const filteredProducts = product.filter((product) => {
     if (
-      product.tags.toLowerCase().includes(search) ||
+     
       product.name.toLowerCase().includes(search) ||
       product.category.toLowerCase().includes(search)
     ) {
@@ -94,13 +94,14 @@ const SearchBarSection = () => {
       </div>
       <div className="display">
         {filteredProducts.map((product) => (
-          <Link to={`/productview/${product._id}`}>
+          
           <ProductCard
-           key={product._id}
+           key={product.id}
+           image={product.image}
            name={product.name}
            price={product.price}
          />
-        </Link>
+        
         ))}
       </div>
     </div>

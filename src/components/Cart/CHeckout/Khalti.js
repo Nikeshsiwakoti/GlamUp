@@ -2,6 +2,7 @@ import React from "react";
 import KhaltiCheckout from "khalti-checkout-web";
 import myKey from "./KhaltiKey";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 export default function Khalti({
     cart,
     address
@@ -16,6 +17,14 @@ export default function Khalti({
         eventHandler: {
             onSuccess() {
                 console.log("Success")
+                navigate("/")
+                Swal.fire({
+      
+                    icon: 'success',
+                    title: 'Payment Successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
             },
             onError(error) {
                 // handle errors

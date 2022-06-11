@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState} from "react";
+import Swal from "sweetalert2";
 import axios from "axios";
 import Navbar from "../Navbar"
 import "./UserProfile.css";
 
 const ProfileScreen = () => {
+
     function parseJwt(token) {
         if (!token) { return; }
         const base64Url = token.split('.')[1];
@@ -16,6 +18,34 @@ const ProfileScreen = () => {
       const token = parseJwt(token_data)
       const user = token
       console.log(user)
+
+    const [fullname,setfullname]=useState();
+    const [email,setemail]=useState();
+    const [contact,setcontact]=useState();
+    const [address,setaddress]=useState();
+
+    const updateProfile = (e) => {
+        e.preventDefault()
+        
+        if (fullname && email && contact && address ) {
+          axios.put("http://localhost:1026/user/update/"+user.id, {fullname,email,contact,address}).then(res => {
+            console.log(res);
+            if (res.data.message === "User Profile Updated") {
+              
+              Swal.fire({
+      
+                icon: 'success',
+                title: 'Profile has been updated',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            } 
+            
+          })
+        } 
+        }
+
+    
 
 
 
@@ -61,6 +91,62 @@ const ProfileScreen = () => {
                             <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="instagram" data-abc="true"><i className="mdi mdi-instagram feather icon-instagram instagram" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
+                   
+                    
+<button type="button" class="mt-16 bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ Edit Profile
+</button>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <input
+          type="text"
+          name="fullname"
+          
+          onChange={e=>setfullname(e.target.value)}
+          className="bg-transparent border-b focus:outline-none"
+          placeholder="Full Name"
+        />
+        <input
+          type="email"
+          name="email"
+          
+          onChange={e=>setemail(e.target.value)}
+          className="bg-transparent border-b focus:outline-none mt-5"
+          placeholder="Email"
+        />
+        <input
+          type="number"
+          name="contact"
+          
+          onChange={e=>setcontact(e.target.value)}
+          max={10}
+          className="bg-transparent border-b focus:outline-none mt-5"
+          placeholder="Phone Number"
+        />
+        <input
+          type="text"
+          name="address"
+          
+          onChange={e=>setaddress(e.target.value)}
+          className="bg-transparent border-b focus:outline-none mt-5"
+          placeholder="Address"
+        />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="mt-16 bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="mt-16 bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3" onClick={updateProfile}>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
                 </div>
             </div>
         </div>
