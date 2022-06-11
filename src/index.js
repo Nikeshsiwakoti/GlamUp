@@ -16,7 +16,7 @@ import axios from 'axios';
 import { Cartprovider } from "./components/Context/CardContext";
 import Cart from "./components/Cart/Cart";
 import Dashboard from "./pages/Dashboard/AdminDashboard";
-import SearchBar from "./components/Search/SearchBar";
+import SearchBar from "./components/Search/SearchBarSection";
 axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem('token')
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -36,7 +36,6 @@ root.render(
         <Route exact path="/dashboard" element={<Dashboard />}></Route>
         <Route exact path="/user" element={<UserProfile />}></Route>
         <Route exact path="/otp" element={<Otp />}></Route>
-        <Route exact path="/search" element={<SearchBar />}></Route>
         <Route exact path="/cart" element={<Cart />}></Route>
       </Routes>
       </Cartprovider>

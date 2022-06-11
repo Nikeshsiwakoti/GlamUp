@@ -1,6 +1,7 @@
 import Navbar from "../Navbar";
 import React from "react";
 import MyFooter from "../MyFooter";
+import Khalti from "./CHeckout/Khalti"
 import ItemImage from "../../../src/assets/images/nati-melnychuk-51sGDpm5S78-unsplash.jpg";
 import ItemImage2 from "../../../src/assets/images/lina-verovaya-F39Yk-FM_fg-unsplash.jpg";
 import ItemImage3 from "../../../src/assets/images/pmv-chamara-MEsWk-dZzlI-unsplash.jpg";
@@ -119,6 +120,12 @@ const CartView = () => {
         <div className="mt-4 border-t-2 border-dotted w-full h-auto pt-3 flex flex-row-reverse">
           <h3 className="font-semibold">Total: Rs. 2000</h3>
         </div>
+        <button
+            className="px-3 rounded-xl shadow-sm py-2 bg-red-600 text-white"
+            
+          >
+            <Khalti/>
+          </button>
       </div>
       <MyFooter />
     </div>

@@ -33,7 +33,7 @@ const NewProducts = () => {
       id: 3,
       name: "Product 4",
       image: ProductImage3,
-      price: "$10",
+      price: "$newProduct10",
     },
     
   ];
