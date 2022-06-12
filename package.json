@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@userfront/react": "^0.2.22",
     "axios": "^0.27.2",
+    "emailjs": "^4.0.0",
     "khalti-checkout-web": "^2.2.0",
     "lottie": "^0.0.1",
     "lottie-react": "^2.2.1",
