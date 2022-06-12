@@ -5,6 +5,7 @@ import {Link,useNavigate,useParams, useSearchParams} from 'react-router-dom'
 import Swal from 'sweetalert2';
 
 export default function Newpassword() {
+  const navigation = useNavigate();
 
   const [password, setPassword] = useState("");
   
@@ -18,6 +19,7 @@ export default function Newpassword() {
     axios.put("http://localhost:1026/user/updatepassword",{email:email.get('email'),password:password})
     .then(result=>{
     if(result.data){
+      navigation("/login")
         Swal.fire({
             icon: 'success',
             title: 'Password updated Successfully',
@@ -39,47 +41,33 @@ export default function Newpassword() {
   }
 
   return (
-    <div>
-        
-       
-        <div class="wrapper " >
-      <div class="inner">
-        <div>
-        <form action="" id="registerForm">
-          <h3>Add New Password</h3>
-          
+    <div className="col-span-1 flex flex-col justify-center items-center">
+      
+    <h1 className="text-5xl font-semibold">Add New Password</h1>
+    
 
-                    <div class="form-wrapper">
-            
-            <input type="password" class="form-control"
-                                     name="password"
-                                    id="password"
-                                    placeholder="Add New Password"
-                                    value={password}
-                                    required
-                                     onChange={(e) => setPassword(e.target.value)}
-                        />
-          </div>
-          
-        
-          
-          
-          
-          <button 
-                    className='fogotpsw'
-                     type="submit"
-                     id="signup"
-                     onClick={updatePassword}
-                  >Submit</button>
-                 
-        </form></div>
-     
-        
-        
-      </div>
+    <div className="flex flex-col mt-[50px]">
+      <input
+        type="password"
+        name="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="bg-transparent border-b focus:outline-none"
+        placeholder="New Password"
+        required
+      />
+      
+      
+
+      <button
+        className="mt-16 bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3"
+        onClick={updatePassword}
+      >
+        Submit
+      </button>
+
       
     </div>
-
-    </div>
+  </div>
   )
 }
