@@ -21,11 +21,12 @@ const ForgotPassword = ({ handlePageState }) => {
         if (result.data) {
         console.log(result.data)
         console.log(e.target)
-        emailjs.sendForm('service_pj1di14', 'template_7qbafs7', e.target, 'McXtoaXEf8EeCEwql')
+        emailjs.sendForm('service_y6yoezb', 'template_4qkesfb', e.target, '-reUPsDsBt1Bq1UeT')
 
         .then((result) => {
           console.log('2')
             console.log(result.text);
+            navigation("/login")
             Swal.fire({
               icon: 'success',
               title: 'Please Check your email',
