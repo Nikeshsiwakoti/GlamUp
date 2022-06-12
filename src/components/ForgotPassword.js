@@ -2,29 +2,48 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import emailjs from "emailjs.com"
 
 
 const ForgotPassword = ({ handlePageState }) => {
   const navigation = useNavigate();
 
-  const [user, setUser] = useState({
-    email: "",
-   
-  });
+  const [email, setEmail] = useState("");
 
-  const handelChange = (e) => {
-    const { name, value } = e.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
+  
+  const CheckEmail = (e) => {
+    e.persist();
+    e.preventDefault();
+    axios
+      .post("http://localhost:1026/emailcheck",{email:email})
+      .then((result) => {
+       
+        if (result.data) {
+        console.log(result.data)
+        console.log(e.target)
+        emailjs.sendForm('service_aicg1fz', 'template_j9vziur', e.target, 'r3j4WyQW1cAwsZsBn')
+
+        .then((result) => {
+          console.log('2')
+            console.log(result.text);
+            alert('Please Check your Email')
+  
+        });
+       
+            
+        } else {
+          alert("Email doesnot exist");
+        }
+      })
+     
+      
   };
 
   
 
   return (
     <div className="col-span-1 flex flex-col justify-center items-center">
-      {console.log(user)}
+      
       <h1 className="text-5xl font-semibold">Password Reset</h1>
       
 
@@ -32,16 +51,20 @@ const ForgotPassword = ({ handlePageState }) => {
         <input
           type="email"
           name="email"
-          value={user.email}
-          onChange={handelChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           className="bg-transparent border-b focus:outline-none"
           placeholder="Email"
         />
+        <input 
+        name="id"
+        hidden= {true}
+       />
         
 
         <button
           className="mt-16 bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3"
-          
+          onClick={CheckEmail}
         >
           Submit
         </button>
