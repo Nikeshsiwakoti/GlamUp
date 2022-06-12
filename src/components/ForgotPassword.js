@@ -12,7 +12,7 @@ const ForgotPassword = ({ handlePageState }) => {
 
   
   const CheckEmail = (e) => {
-    e.persist();
+    
     e.preventDefault();
     axios
       .post("http://localhost:1026/user/emailcheck",{email:email})
@@ -21,7 +21,7 @@ const ForgotPassword = ({ handlePageState }) => {
         if (result.data) {
         console.log(result.data)
         console.log(e.target)
-        emailjs.sendForm('service_01biwbe', 'template_7qbafs7', e.target, 'McXtoaXEf8EeCEwql')
+        emailjs.sendForm('service_pj1di14', 'template_7qbafs7', e.target, 'McXtoaXEf8EeCEwql')
 
         .then((result) => {
           console.log('2')
