@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "@userfront/react": "^0.2.22",
     "axios": "^0.27.2",
     "khalti-checkout-web": "^2.2.0",
     "lottie": "^0.0.1",
