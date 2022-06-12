@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import emailjs from "emailjs.com"
+import emailjs from "@emailjs/browser"
 
 
 const ForgotPassword = ({ handlePageState }) => {
@@ -15,24 +15,33 @@ const ForgotPassword = ({ handlePageState }) => {
     e.persist();
     e.preventDefault();
     axios
-      .post("http://localhost:1026/emailcheck",{email:email})
+      .post("http://localhost:1026/user/emailcheck",{email:email})
       .then((result) => {
        
         if (result.data) {
         console.log(result.data)
         console.log(e.target)
-        emailjs.sendForm('service_aicg1fz', 'template_j9vziur', e.target, 'r3j4WyQW1cAwsZsBn')
+        emailjs.sendForm('service_01biwbe', 'template_7qbafs7', e.target, 'McXtoaXEf8EeCEwql')
 
         .then((result) => {
           console.log('2')
             console.log(result.text);
-            alert('Please Check your Email')
+            Swal.fire({
+              icon: 'success',
+              title: 'Please Check your email',
+              showConfirmButton: false,
+              timer: 1500
+            })
   
         });
        
             
         } else {
-          alert("Email doesnot exist");
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Email does not exist',
+          })
         }
       })
      
