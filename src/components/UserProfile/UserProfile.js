@@ -63,6 +63,7 @@ const ProfileScreen = () => {
                         <div className="m-b-25">
                             <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" className="img-radius" alt="User-Profile-Image"/>
                         </div>
+                        <button className="mt-8  bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3"></button>
                         <h6 className="f-w-600">{user.username}</h6>
                         <p></p>
                         <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>

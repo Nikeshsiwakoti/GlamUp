@@ -44,8 +44,7 @@ export default function Newpassword() {
     <div className="col-span-1 flex flex-col justify-center items-center">
       
     <h1 className="text-5xl font-semibold">Add New Password</h1>
-    
-
+    <form className="text-gray-600 body-font relative" onSubmit={updatePassword}>
     <div className="flex flex-col mt-[50px]">
       <input
         type="password"
@@ -60,14 +59,13 @@ export default function Newpassword() {
       
 
       <button
-        className="mt-16 bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3"
-        onClick={updatePassword}
-      >
+        className="mt-16 bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3">
         Submit
       </button>
 
       
     </div>
+    </form>
   </div>
   )
 }

@@ -11,7 +11,7 @@ const ForgotPassword = ({ handlePageState }) => {
   const [email, setEmail] = useState("");
 
   
-  const CheckEmail = (e) => {
+  const checkEmail = (e) => {
     
     e.preventDefault();
     axios
@@ -56,7 +56,7 @@ const ForgotPassword = ({ handlePageState }) => {
       
       <h1 className="text-5xl font-semibold">Password Reset</h1>
       
-
+      <form className="text-gray-600 body-font relative" onSubmit={checkEmail}>
       <div className="flex flex-col mt-[50px]">
         <input
           type="email"
@@ -73,14 +73,13 @@ const ForgotPassword = ({ handlePageState }) => {
         
 
         <button
-          className="mt-16 bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3"
-          onClick={CheckEmail}
-        >
+          className="mt-16 bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3">
           Submit
         </button>
  
         
       </div>
+      </form>
     </div>
   );
 };
