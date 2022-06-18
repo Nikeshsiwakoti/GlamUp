@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
-import  Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 const Signup = ({ handlePageState }) => {
   const navigation = useNavigate()
@@ -9,7 +9,7 @@ const Signup = ({ handlePageState }) => {
     fullname: "",
     email: "",
     contact: "",
-    address:"",
+    address: "",
     password: "",
   });
 
@@ -23,20 +23,20 @@ const Signup = ({ handlePageState }) => {
 
   const register = (e) => {
     e.preventDefault()
-    const { fullname, email, contact,address, password } = user
+    const { fullname, email, contact, address, password } = user
     if (fullname && email && contact && address && password) {
       axios.post("http://localhost:1026/user/register", user).then(res => {
         console.log(res);
         if (res.data.message === "User Registered") {
           navigation('/otp', { state: { email: user.email } })
           Swal.fire({
-  
+
             icon: 'success',
             title: 'Account has been created',
             showConfirmButton: false,
             timer: 1500
           })
-        } else if (res.data.message === "Email already registered"){
+        } else if (res.data.message === "Email already registered") {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -53,12 +53,12 @@ const Signup = ({ handlePageState }) => {
         }
       })
     } else {
-        Swal.fire({
-          icon: 'error',
-          text: 'Enter Something',
-        })
-      }
+      Swal.fire({
+        icon: 'error',
+        text: 'Enter Something',
+      })
     }
+  }
   return (
     <div className="col-span-1 flex flex-col justify-center items-center">
       {console.log(user)}

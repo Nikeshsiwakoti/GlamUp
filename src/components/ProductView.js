@@ -1,11 +1,10 @@
 import MyFooter from "./MyFooter";
 import React from 'react'
 import Navbar from "./Navbar";
-import photos from "../assets/images/nati-melnychuk-51sGDpm5S78-unsplash.jpg";
+
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
-import { FiPlus, FiMinus } from "react-icons/fi";
+
 import axios from "axios";
 
 const ProductView = () => {
@@ -20,6 +19,7 @@ const ProductView = () => {
   const token_data = localStorage.getItem("token")
   const token = parseJwt(token_data)
   const user = token.id
+  console.log(user)
   
 
   

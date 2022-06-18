@@ -1,122 +1,162 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import axios from 'axios'
+import { useEffect, useState } from "react";
 import './dash.css'
-const Dashboard = () => {
-  const [navcollapse, setNavcollapse] = useState(false);
-  function onclick(){
-    setNavcollapse(!navcollapse)
-    console.log(navcollapse);
-  }
-  return (
-    <div className={navcollapse?"d-flex toggled": "d-flex"} id="wrapper">
-      {/* Sidebar */}
-      <div className="bg-white" id="sidebar-wrapper">
-        <div className="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i className="fas fa-user-secret me-2" />Glamup</div>
-        <div className="list-group list-group-flush my-3">
-          <Link to="#" className="list-group-item list-group-item-action bg-transparent second-text active"><i className="fas fa-tachometer-alt me-2" />Dashboard</Link>
-          <Link to="#" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-project-diagram me-2" />Add Products</Link>
-          <Link to="#" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-chart-line me-2" />Analytics</Link>
-          <Link to="#" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-paperclip me-2" />Reports</Link>
-          <Link to="#" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-shopping-cart me-2" />Store Mng</Link>
-          <Link to="#" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-gift me-2" />Products</Link>
-          <Link to="#" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-comment-dots me-2" />Chat</Link>
-          <Link to="#" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-map-marker-alt me-2" />Outlet</Link>
-          <Link to="/login" className="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i className="fas fa-power-off me-2" />Logout</Link>
-        </div>
-      </div>
-      {/* /#sidebar-wrapper */}
-      {/* Page Content */}
-      <div id="page-content-wrapper">
-        <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
-          <div className="d-flex align-items-center">
-            <i onClick={onclick} className="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle" />
-            <h2 className="fs-2 m-0">Dashboard</h2>
-          </div>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i className="fas fa-user me-2" />John Doe
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a className="dropdown-item" href="#">Profile</a></li>
-                  <li><a className="dropdown-item" href="#">Settings</a></li>
-                  <li><a className="dropdown-item" href="#">Logout</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </nav>
-        <div className="container-fluid px-4">
-          <div className="row g-3 my-2">
-            <div className="col-md-3">
-              <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                <div>
-                  <h3 className="fs-2">720</h3>
-                  <p className="fs-5">Products</p>
+import { Link } from 'react-router-dom'
+import { BsPencilSquare } from 'react-icons/bs';
+import { FaTrashAlt } from 'react-icons/fa';
+import {FaPeopleCarry} from 'react-icons/fa';
+import {FaUserCheck} from 'react-icons/fa';
+import {ImProfile} from 'react-icons/im';
+import {AiOutlineUsergroupAdd} from 'react-icons/ai';
+export const AdminDashboard = () => {
+
+    const logout=()=>{
+        localStorage.clear();
+        window.location.replace('/')
+    }
+    
+    
+    
+    
+    // 
+  
+    
+    
+
+    
+    
+    
+    return (
+        <>
+            <div className="d-flex" id="wrapper">
+                {/* Sidebar */}
+                <div className="bg-white" id="sidebar-wrapper">
+                    
+                    <div className="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">GlamUp</div>
+                    <div className="list-group list-group-flush my-3">
+                        <Link to="/dashboard" className="list-group-item list-group-item-action bg-transparent second-text active"><i className="fas fa-tachometer-alt me-2" />Dashboard</Link>
+                        </div>
+                        <div className="list-group-item list-group-item-action bg-transparent second-text fw-bold  ">
+
+                        <p> Interface</p>
+                        <Link to="/profileadmin" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-gift me-2" />View Profile</Link>
+                        <Link to='/viewuser' className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-comment-dots me-2" /> View Registered User</Link>
+                        <Link to="/booking" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-map-marker-alt me-2" />View Worker</Link>
+                        <Link to="/dashboard/addproducts" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-map-marker-alt me-2" />Add Products</Link>
+
+                    </div>
                 </div>
-                <i className="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3" />
-              </div>
-            </div>
-            <div className="col-md-3">
-              <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                <div>
-                  <h3 className="fs-2">4920</h3>
-                  <p className="fs-5">Sales</p>
+                {/* /#sidebar-wrapper */}
+                {/* Page Content */}
+                <div id="page-content-wrapper">
+                    <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                        <div className="d-flex align-items-center">
+                            <i className="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle" />
+                            <h2 className="fs-2 m-0">Dashboard</h2>
+                        </div>
+                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon" />
+                        </button>
+                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i className="fas fa-user me-2" />Admin
+                                    </a>
+                                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><Link to="/userprofile" className="dropdown-item">Profile</Link></li>
+                                        <li><Link to="#" className="dropdown-item" onClick={logout}>Logout</Link></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <div className="container-fluid px-3">
+                        <div className="row g-3 my-2">
+                            <div className="col-md-3">
+                                <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                                    <div>
+                                        <h3 className="fs-2">8</h3>
+                                        <p className="fs-5">Workers</p>
+                                    </div>
+                                    <i className="FaPeopleCarry primary-text border rounded-full secondary-bg p-3" 
+                                    
+                                    ><FaPeopleCarry size={40}></FaPeopleCarry></i> 
+                                </div>
+                            </div>
+                            <div className="col-md-3">
+                                <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                                    <div>
+                                        <h3 className="fs-2">4</h3>
+                                        <p className="fs-5">Registered User</p>
+                                    </div>
+                                    <i className="FaUserCheck primary-text border rounded-full secondary-bg p-3" > 
+                                    <FaUserCheck size={40}></FaUserCheck></i>
+                                </div>
+                            </div>
+                            <div className="col-md-3">
+                                <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                                    <div>
+                                        <h3 className="fs-2">4</h3>
+                                        <p className="fs-5">Profile</p>
+                                    </div>
+                                    <i className="ImProfile primary-text border rounded-full secondary-bg p-3" >
+                                        <ImProfile size={40}></ImProfile> </i>
+                                </div>
+                            </div>
+                            <div className="col-md-3">
+                                <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                                    <div>
+                                        <h3 className="fs-2">4</h3>
+                                        <p className="fs-5">Add Workers</p>
+                                    </div>
+                                    <i className="AiOutlineUsergroupAdd primary-text border rounded-full secondary-bg p-3" >
+                                        <AiOutlineUsergroupAdd size={40}></AiOutlineUsergroupAdd> </i>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row my-5">
+                            <h3 className="fs-4 mb-3">Recent Registred Users</h3>
+                            <div className="container mx-auto">
+                                <table className="table bg-white rounded shadow-sm  table-hover">
+                                    <thead style={{ fontSize: ".9em" }}>
+                                        <tr>
+                                            <th scope="col" width={50}>#</th>
+                                            <th scope="col" className=''>Client Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Address</th>
+                                            <th scope="col">Phone</th>
+                                            {/* <th scope="col">problemdescription</th> */}
+                                        </tr>
+                                    </thead>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <i className="fas fa-hand-holding-usd fs-1 primary-text border rounded-full secondary-bg p-3" />
-              </div>
             </div>
-            <div className="col-md-3">
-              <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                <div>
-                  <h3 className="fs-2">3899</h3>
-                  <p className="fs-5">Delivery</p>
+            {/* /#page-content-wrapper */}
+            <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Invoice</h5>
+                             
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                        </div>
+                        <div className="modal-body">
+                            
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button  type="button" className="btn btn-primary">Invoice </button>
+                        </div>
+                    </div>
                 </div>
-                <i className="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3" />
-              </div>
             </div>
-            <div className="col-md-3">
-              <div className="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                <div>
-                  <h3 className="fs-2">%25</h3>
-                  <p className="fs-5">Increase</p>
-                </div>
-                <i className="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3" />
-              </div>
-            </div>
-          </div>
-          <div className="row my-5">
-            <h3 className="fs-4 mb-3">Recent Orders</h3>
-            <div className="col">
-              <table className="table bg-white rounded shadow-sm  table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col" width={50}>#</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Customer</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Edit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Television</td>
-                    <td>Jonny</td>
-                    <td>$1200</td>
-                    <td><i className='fas fa-pen text-success'></i></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+        </>
+    )
 }
-export default Dashboard
+export default AdminDashboard;

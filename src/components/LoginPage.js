@@ -22,10 +22,11 @@ const LoginPage = ({ handlePageState }) => {
 
   const login = async(e) => {
     e.preventDefault();
-    const {  email,  password } = user
+    const {  email,  password} = user
     if ( email &&  password) {
       axios.post("http://localhost:1026/user/login", user).then(res => {
-        if (res.data.message === "Login Succesfull") {
+        console.log(res.data)
+        if (res.data.isAdmin===false) {
           localStorage.setItem('token',res.data.accessToken)
           navigation('/', { state: { email: user.email } })
           Swal.fire({
@@ -35,15 +36,18 @@ const LoginPage = ({ handlePageState }) => {
             showConfirmButton: false,
             timer: 1500
           })
-        }else if(res.data.message==="Admin Login."){
-          navigation('/dashboard',{ state: { email: user.email } })
+        }else if(res.data.isAdmin){
+          localStorage.setItem('token',res.data.accessToken)
+          navigation('/dashboard', { state: { email: user.email } })
           Swal.fire({
+  
             icon: 'success',
             title: 'Admin Login Succesfull',
             showConfirmButton: false,
             timer: 1500
           })
-        }else if(res.data.message==="Email is not verified"){
+        }
+        else if(res.data.message==="Email is not verified"){
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

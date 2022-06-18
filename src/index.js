@@ -19,6 +19,7 @@ import Dashboard from "./pages/Dashboard/AdminDashboard";
 import SearchBar from "./components/Search/SearchBarSection";
 import ForgotPassword from "./components/ForgotPassword";
 import Newpassword from "./components/NewPassword";
+import AddProducts from "./components/AddProducts";
 axios.defaults.headers.common["Authorization"] = "Bearer " + localStorage.getItem('token')
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -41,6 +42,7 @@ root.render(
         <Route exact path="/forgotpassword" element={<ForgotPassword />}></Route>
         <Route exact path="/newpassword" element={<Newpassword />}></Route>
         <Route exact path="/cart" element={<Cart />}></Route>
+        <Route exact path="/dashboard/addproducts" element={<AddProducts />}></Route>
       </Routes>
       </Cartprovider>
     </BrowserRouter>
