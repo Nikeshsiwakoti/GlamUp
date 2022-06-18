@@ -44,6 +44,26 @@ const ProfileScreen = () => {
           })
         } 
         }
+        const updateProfileImage = (e) => {
+          e.preventDefault()
+          
+          if (image ) {
+            axios.put("http://localhost:1026/user/update/"+user.id, {fullname,email,contact,address}).then(res => {
+              console.log(res);
+              if (res.data.message === "User Profile Updated") {
+                
+                Swal.fire({
+        
+                  icon: 'success',
+                  title: 'Profile has been updated',
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              } 
+              
+            })
+          } 
+          }
 
     
 
@@ -63,7 +83,7 @@ const ProfileScreen = () => {
                         <div className="m-b-25">
                             <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80" className="img-radius" alt="User-Profile-Image"/>
                         </div>
-                        <button className="mt-8  bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3"></button>
+                        <button className="mt-8  bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3" data-bs-toggle="modal" data-bs-target="#picture"></button>
                         <h6 className="f-w-600">{user.username}</h6>
                         <p></p>
                         <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
@@ -148,6 +168,29 @@ const ProfileScreen = () => {
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="picture" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+Uploading a new photo</h5> <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="body-desc"> 
+It will be easier for your friends to recognize you if you upload your real photo. You can upload the image in JPG, GIF or PNG format. </p>
+                <div class="photo-input"> <input type="file" id="loadFile" onchange="console.log(this.files[0].name);" /> <button class="btn btn-sm btn-primary" onclick={updateProfileImage}> Select a file </button> </div>
+            </div>
+            <div class="modal-footer">
+                <p class="footer-title">
+If you're having problems uploading, try choosing a smaller photo.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
                 </div>
             </div>
         </div>

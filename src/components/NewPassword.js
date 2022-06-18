@@ -5,6 +5,18 @@ import {Link,useNavigate,useParams, useSearchParams} from 'react-router-dom'
 import Swal from 'sweetalert2';
 
 export default function Newpassword() {
+
+  function parseJwt(token) {
+    if (!token) { return; }
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  }
+  // get user form the token
+  const token_data = localStorage.getItem("token")
+  const token = parseJwt(token_data)
+  const user = token
+  console.log(user)
   const navigation = useNavigate();
 
   const [password, setPassword] = useState("");
@@ -16,25 +28,19 @@ export default function Newpassword() {
 
   const updatePassword=(e)=>{
     e.preventDefault();
-    axios.put("http://localhost:1026/user/updatepassword",{email:email.get('email'),password:password})
-    .then(result=>{
-    if(result.data){
-      navigation("/login")
+    axios.put("http://localhost:1026/user/updatepassword"+user.id,{password})
+    .then(res=>{
+    
+      if (res.data.message === "User Password Updated") {
+            navigation("/login")
         Swal.fire({
-            icon: 'success',
-            title: 'Password updated Successfully',
-            showConfirmButton: false,
-            timer: 1500
-          })
-       }
-       else{
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Email does not exist',
-          })
-       }
-      
+
+          icon: 'success',
+          title: 'PAssword has been updated',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      } 
       
      })
 
