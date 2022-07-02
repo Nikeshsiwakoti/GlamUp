@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './dash.css'
+import './dash.css';
 const Dashboard = () => {
   const [navcollapse, setNavcollapse] = useState(false);
   function onclick(){

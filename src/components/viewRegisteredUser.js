@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from "react";
 import '../pages/Dashboard/dash.css'
-import { Link } from 'react-router-dom'
+import { Link ,useNavigate} from 'react-router-dom'
 import { BsPencilSquare } from 'react-icons/bs';
 import { FaTrashAlt } from 'react-icons/fa';
 import {FaPeopleCarry} from 'react-icons/fa';
@@ -18,6 +18,7 @@ export const ViewUser = () => {
         window.location.replace('/')
     }
 
+    const navigation =useNavigate()
     const [viewdata, setViewdata] = useState([]);
 
  
@@ -25,6 +26,7 @@ export const ViewUser = () => {
      
     const deleteuser =(id)=>{
       axios.delete("http://localhost:1026/user/deleteuser/"+id)
+      window.location="/dashboard/registereduser"
     }
 
     useEffect(()=>{

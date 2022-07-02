@@ -2725,7 +2725,7 @@ pre code {
   border: 0;
 }
 .form-control:focus {
-  color: #495057;
+  color: #25282e;
   background-color: #fff;
   border-color: #80bdff;
   outline: 0;
@@ -2733,19 +2733,19 @@ pre code {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 .form-control::-webkit-input-placeholder {
-  color: #6c757d;
+  color: #25282e;
   opacity: 1;
 }
 .form-control:-ms-input-placeholder {
-  color: #6c757d;
+  color: #25282e;
   opacity: 1;
 }
 .form-control::-ms-input-placeholder {
-  color: #6c757d;
+  color: #25282e;
   opacity: 1;
 }
 .form-control::placeholder {
-  color: #6c757d;
+  color: #25282e;
   opacity: 1;
 }
 .form-control:disabled,
