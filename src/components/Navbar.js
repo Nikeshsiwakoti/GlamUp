@@ -77,10 +77,14 @@ const Navbar = () => {
                     <button className="" onClick={logout}>
                       Log Out
                     </button>
-                  </Link></a></li>
+                  </Link>
+                  </a></li>
                 </ul>
               </li>
+              
             </ul>
+            
+            
           </div>
 
 
@@ -90,8 +94,43 @@ const Navbar = () => {
               <FaShoppingCart className="text-white" />
             </div>
           </button></Link>
+          <div className="relative">
+            <button className="block md:hidden" onClick={() => setShowMobileMenu(!showMobileMenu)}>
+              <FiMenu size={25} />
+            </button>
+
+            {showMobileMenu && (
+              <div className="absolute top-12 rounded-lg shadow-lg -left-[10rem] w-auto border border-blue-600 bg-white px-10 py-3 flex flex-col gap-5 h-auto">
+                <Link to="/" className="mx-auto">
+                  <button className="hover:underline font-semibold text-lg text-gray-600 hover:text-gray-900 transition-all duration-300 ease-in-out">
+                    Home
+                  </button>
+                </Link>
+
+                <Link to="/" className="mx-auto">
+                  <button className="hover:underline font-semibold text-lg text-gray-600 hover:text-gray-900 transition-all duration-300 ease-in-out">
+                    Category
+                  </button>
+                </Link>
+
+                <Link to="/aboutus" className="mx-auto">
+                  <button className="hover:underline font-semibold text-lg text-gray-600 hover:text-gray-900 transition-all duration-300 ease-in-out">
+                    About Us
+                  </button>
+                </Link>
+
+                <Link to="/contact" className="mx-auto">
+                  <button className="hover:underline font-semibold text-lg text-gray-600 hover:text-gray-900 transition-all duration-300 ease-in-out">
+                    Contact Us
+                  </button>
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
+        
       </div>
+      
     );
   } else {
     menu = (
