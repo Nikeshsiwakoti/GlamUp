@@ -61,7 +61,7 @@ const Signup = ({ handlePageState }) => {
   }
   return (
     <div className="col-span-1 flex flex-col justify-center items-center">
-      {console.log(user)}
+      
       <h1 className="text-5xl font-semibold">Signup</h1>
 
       <div className="flex flex-col mt-[50px]">

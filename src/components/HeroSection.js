@@ -3,7 +3,7 @@ import ShopNowButton from "./ShopNowButton";
 
 const HeroSection = () => {
   return (
-    <div className="w-full h-[600px] bg-[#1D1D1D] grid grid-cols-2 mt-10">
+    <div className="w-full h-auto md:h-[600px] bg-[#1D1D1D] grid grid-cols-1 md:grid-cols-2 mt-10">
       {/* Image */}
       <div className="col-span-1 h-full">
         <img
@@ -14,7 +14,7 @@ const HeroSection = () => {
       </div>
 
       {/* Cotext */}
-      <div className="col-span-1 h-full flex flex-col justify-center items-center">
+      <div className="col-span-1 h-full py-16 md:py-0 flex flex-col justify-center items-center">
         <h1 className="text-5xl font-bold text-white leading-normal">
           New <strong className="text-blue-600">Glam Up.</strong>
           <br />

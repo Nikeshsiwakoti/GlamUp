@@ -3,8 +3,8 @@ import Navbar from "./Navbar";
 import emailjs from '@emailjs/browser';
 import { useState } from "react";
 
-const Result = () => {
-  return (
+const Result =()=>{
+  return(
     <p>Your message has been sent successfully.
       we will contact you soon.
     </p>
@@ -15,30 +15,30 @@ const Result = () => {
 
 const ContactPage = () => {
 
-  const [result, showResult] = useState(false);
+  const[result,showResult]=useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs.sendForm('service_y6yoezb', 'template_os2nhn7', e.target, '-reUPsDsBt1Bq1UeT')
       .then((result) => {
-        console.log(result.text);
+          console.log(result.text);
       }, (error) => {
-        console.log(error.text);
+          console.log(error.text);
       });
-    e.target.reset();
-    showResult(true);
+      e.target.reset();
+      showResult(true);
   };
 
-  setTimeout(() => {
+  setTimeout(()=>{
     showResult(false)
-  }, 5000)
+  },5000)
 
   return (
-    <div className="w-full h-screen p-10">
+    <div className="w-full h-auto p-10">
       <Navbar />
-      <form className="text-gray-600 body-font relative" onSubmit={sendEmail}>
-        <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
+      <form className="text-gray-600 body-font" onSubmit={sendEmail}>
+        <div className="container px-5 py-24 mx-auto flex flex-col md:flex-row">
           <div className="lg:w-2/3 md:w-1/2 bg-gray-300 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
             <iframe
               width="100%"
@@ -53,7 +53,7 @@ const ContactPage = () => {
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-            //   style="filter: grayscale(1) contrast(1.2) opacity(0.4);"
+              //   style="filter: grayscale(1) contrast(1.2) opacity(0.4);"
             ></iframe>
             <div className="bg-white relative flex flex-wrap py-6 rounded shadow-md">
               <div className="lg:w-1/2 px-6">
@@ -85,7 +85,7 @@ const ContactPage = () => {
             <p className="leading-relaxed mb-5 text-gray-600">
               We would like to hear your honest review about our servies.
             </p>
-
+            
             <div className="relative mb-4">
               <label
                 htmlFor="name"
@@ -134,7 +134,7 @@ const ContactPage = () => {
               Submit
             </button>
             <p className="text-xs text-gray-500 mt-3">© 2020 Glam Up.</p>
-            <div className="row">{result ? <Result /> : null}</div>
+            <div className="row">{result ? <Result/>:null}</div>
           </div>
         </div>
       </form>

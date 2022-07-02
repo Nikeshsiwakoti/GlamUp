@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -25,7 +25,7 @@ const LoginPage = ({ handlePageState }) => {
     const {  email,  password} = user
     if ( email &&  password) {
       axios.post("http://localhost:1026/user/login", user).then(res => {
-        console.log(res.data)
+        
         if (res.data.isAdmin===false) {
           localStorage.setItem('token',res.data.accessToken)
           navigation('/', { state: { email: user.email } })
@@ -72,7 +72,7 @@ const LoginPage = ({ handlePageState }) => {
 
   return (
     <div className="col-span-1 flex flex-col justify-center items-center">
-      {console.log(user)}
+      
       <h1 className="text-5xl font-semibold">Login</h1>
 
       <div className="flex flex-col mt-[50px]">
@@ -92,9 +92,9 @@ const LoginPage = ({ handlePageState }) => {
           className="bg-transparent border-b focus:outline-none mt-5"
           placeholder="Password"
         />
-        <Link to="/forgotpassword"><a href="" className="text-xs text-[#2C4CF3] mt-3">
+        <a href="/forgotpassword" className="text-xs text-[#2C4CF3] mt-3">
           Forgot Password?
-        </a></Link>
+        </a>
 
         <button
           className="mt-16 bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3"

@@ -57,7 +57,7 @@ export default function Khalti({
     return (
         <div>
             <button
-                onClick={() => { checkout.show({ amount: 1000 }); }}
+                onClick={() => { checkout.show({ amount: 100000 }); }}
                 style={buttonStyles}
             >
                 Khalti Pay

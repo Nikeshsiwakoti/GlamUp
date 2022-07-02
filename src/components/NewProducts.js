@@ -33,7 +33,7 @@ const NewProducts = () => {
       id: 3,
       name: "Product 4",
       image: ProductImage3,
-      price: "$newProduct10",
+      price: "$10",
     },
     
   ];
@@ -44,7 +44,7 @@ const NewProducts = () => {
       </h1>
 
       {/* Products */}
-      <div className="grid grid-cols-3 gap-10 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
         {/* Products Loop */}
         {product.slice(0,4).map((newProduct) => (
          <Link to={`/productview/${newProduct._id}`}>

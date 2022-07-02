@@ -1,13 +1,25 @@
 import MyFooter from "./MyFooter";
-import React from 'react'
+import React, { useState } from 'react';
 import Navbar from "./Navbar";
-
+import { BsFlag } from 'react-icons/bs'
+import { AiOutlineLike } from 'react-icons/ai'
+import { BiShare } from 'react-icons/bi'
+import { MdDelete, MdDeleteOutline } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
+import { CartContext } from "./Context/CardContext";
 
 import axios from "axios";
 
 const ProductView = () => {
+  var { id } = useParams()
+  const [message, setMessage] = useState("");
+  const [prodata, setProdata] = useState([]);
+  const [cart] = React.useContext(CartContext)
+  const [rating,setRating]=useState();
+
+
 
   function parseJwt(token) {
     if (!token) { return; }
@@ -20,46 +32,80 @@ const ProductView = () => {
   const token = parseJwt(token_data)
   const user = token.id
   console.log(user)
-  
 
-  
-  
+
+
+  const deletecomment = (e, commentId) => {
+    e.preventDefault();
+    axios.delete("http://localhost:1026/product/comment/delete/" + commentId)
+
+
+  };
+
+  const addcomment = (e) => {
+    e.preventDefault();
+
+    const adata = { message: message, user: user, product: id, star:rating}
+
+
+    axios
+      .post("http://localhost:1026/product/comment/add", adata)
+      .then((result12) => {
+
+        if (result12.data) {
+
+          window.location = "/productview/" + id
+          alert("Comment Added succsessfullly!!");
+        }
+
+      })
+      .catch();
+  };
+
+
 
   // 
 
-  const [product , setProduct] = React.useState('')
-  const {id} = useParams();
-  React.useEffect(()=>{
-    axios.get('http://localhost:1026/product/view/'+id).then((res)=>{
+  const [product, setProduct] = React.useState('')
+
+  React.useEffect(() => {
+    axios.get('http://localhost:1026/product/view/' + id).then((res) => {
       setProduct(res.data.data)
-    }).catch(e=>{
+    }).catch(e => {
       console.log(e);
     })
-  },[])
+
+    axios.get("http://localhost:1026/product/comment/view/" + id).then((result) => {
+      console.log(result);
+      setProdata(result.data);
+    }).catch((e) => {
+      console.log("something went wrong");
+    });
+
+
+  }, [])
+  console.log(prodata)
 
   // add to cart 
-  const addtoCart = async(e, productId) =>{
+  const addtoCart = async (e, productId) => {
     e.preventDefault()
     try {
-      const res = await axios.put(`http://localhost:1026/user/addtocart/${productId}`,{
-      user
-    })
-    if(res){
-      Swal.fire({
-        icon: "success",
-        title: "Successfully Added to Cart",
-      });
-      console.log(res.data)
-    }else{
-      console.log('something went wrong');
-    }
+      const res = await axios.put(`http://localhost:1026/user/addtocart/${productId}`, {
+        user
+      })
+      if (res) {
+        Swal.fire({
+          icon: "success",
+          title: "Successfully Added to Cart",
+        });
+        console.log(res.data)
+      } else {
+        console.log('something went wrong');
+      }
     } catch (error) {
       console.log(error);
     }
   }
-  // const AddToCart = () => {
-   
-  // };
   return (
     <div className="w-full h-screen p-10">
       <Navbar />
@@ -72,13 +118,13 @@ const ProductView = () => {
               src={`http://localhost:1026/${product.image}`}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              
-              
+
+
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-              {product.name}
+                {product.name}
               </h1>
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
-              {product.brandname}
+                {product.brandname}
               </h2>
               <div className="flex mb-4">
                 <span className="flex items-center">
@@ -179,7 +225,7 @@ const ProductView = () => {
                 </span>
               </div>
               <p className="leading-relaxed">
-              {product.description}
+                {product.description}
               </p>
               {/* <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="flex">
@@ -215,24 +261,105 @@ const ProductView = () => {
               </div> */}
               <div className="flex mt-20">
                 <span className="title-font font-medium text-2xl text-gray-900">
-                  {product.price}
+                  ${product.price}
                 </span>
-                <button className="bg-[#5E73E1] text-white font-semibold rounded-2xl py-2 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3">
-                  Buy Now
-                </button>
-                
+
+
                 <button
-                type='submit'
+                  type='submit'
                   className="bg-[#5E73E1] text-white font-semibold rounded-2xl py-2 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3"
-                  onClick={e=>addtoCart(e,product._id)}
+                  onClick={e => addtoCart(e, product._id)}
                 >
                   Add to Cart
                 </button>
+
+                <form>
+
+                </form>
+
               </div>
             </div>
           </div>
         </div>
       </section>
+      <div>
+        <div class="form-group">
+          <ReactStars
+            count={5}
+            onChange={(rating)=>{setRating(rating)}}
+            size={24}
+            activeColor="#ffd700"
+          />
+          <input style={{ border: '2px solid gray' }}
+            type='textarea'
+            class="form-control py-5"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            placeholder="Add a comment"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          ></input>
+
+          <button type="submit" class="btn mt-3 btn-info"
+            onClick={addcomment}
+
+          >Post</button>
+        </div>
+
+        {prodata?.map((singledata) => {
+          return (
+
+            <div>
+              <div className="d-flex">
+                <img
+                  src={"http://localhost:1026/" + singledata.user?.profile}
+                  className="imagesss rounded-circle p-2 m-3"
+                />
+
+
+                <div>
+                  <h5 className="pl-1 pt-4">{singledata.user.fullname}  <div className="float-right flag"><BsFlag></BsFlag>
+                    <button className="bg-black w-7 h-7 rounded-xl flex justify-center items-center mt-5" onClick={deletecomment}>
+                      <MdDeleteOutline className="text-white" size={20} />
+                    </button></div></h5>
+                  {
+                    singledata.star===1?
+                    <i className="fas fa-star"></i>:
+                    singledata.star===2?
+                    <><i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i></>:
+                    singledata.star===3?
+                    <><i className="fas fa-star"></i>
+                    <i className="fas fa-star">
+                      </i><i className="fas fa-star"></i></>:
+                      singledata.star===4?
+                      <><i className="fas fa-star"></i>
+                      <i className="fas fa-star"> </i>
+                      <i className="fas fa-star"></i>
+                        <i className="fas fa-star"></i></>:
+                         singledata.star===5?
+                         <><i className="fas fa-star"></i>
+                         <i className="fas fa-star"> </i>
+                         <i className="fas fa-star"></i>
+                           <i className="fas fa-star"></i>
+                           <i className="fas fa-star"></i></>:null
+                  }
+                  <p>{singledata.message}</p>
+                  <AiOutlineLike size={25}></AiOutlineLike>
+                  <BiShare size={25} className='ml-5'></BiShare>
+
+
+
+
+                </div></div>
+
+
+
+              <hr></hr>
+            </div>
+          );
+        })}
+      </div>
       <MyFooter />
     </div>
   );

@@ -34,7 +34,7 @@ const HighlightImages = () => {
   return (
     <div className="bg-white mt-16 h-auto">
       {/* Two Images Grid */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {BigImages.map((BigImage) => (
           <div key={BigImage.id} className="col-span-1 h-[500px]">
             <img
@@ -47,7 +47,7 @@ const HighlightImages = () => {
       </div>
 
       {/* Three Images Grid */}
-      <div className="grid grid-cols-3 gap-3 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-5">
         {SmallImages.map((SmallImage) => (
           <div key={SmallImage.id} className="col-span-1 h-[300px]">
             <img

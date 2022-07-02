@@ -9,7 +9,7 @@ const ProductCard = ({ image, name, price }) => {
 
       <div className="flex flex-col justify-center items-center gap-2 py-5 font-semibold text-xl">
         <h2>{name}</h2>
-        <h3>{price}</h3>
+        <h3>${price}</h3>
       </div>
     </div>
   );
