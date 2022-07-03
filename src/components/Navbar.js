@@ -43,7 +43,7 @@ const Navbar = () => {
             </button>
           </Link>
 
-          <Link to="/" className="mx-auto">
+          <Link to="/category" className="mx-auto">
             <button className="hover:underline font-semibold text-lg text-gray-600 hover:text-gray-900 transition-all duration-300 ease-in-out">
               Category
             </button>

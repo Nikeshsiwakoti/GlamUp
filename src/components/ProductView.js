@@ -94,6 +94,7 @@ const ProductView = () => {
         user
       })
       if (res) {
+        window.location="/productview/"+id
         Swal.fire({
           icon: "success",
           title: "Successfully Added to Cart",

@@ -49,9 +49,9 @@ const CategoryPage = () => {
 },
 
 ]
-    const[data,setData]=useState(Categories);
+    const[data,setData]=useState(product);
     const filterResult=(catItem)=>{
-        const result = Categories.filter((curData)=>{
+        const result = product.filter((curData)=>{
            return curData.catergory ===catItem;
         });
         setData(result);
@@ -59,7 +59,7 @@ const CategoryPage = () => {
     return (
         <>
         <Navbar/>
-        <SearchBarSection />
+        <SearchBarSection  />
             <h1 className="text-center text-info">Let's Glam up</h1>
             <div className="container-fluid mx-2">
                 <div className="row mt-5 mx-2">
@@ -69,22 +69,22 @@ const CategoryPage = () => {
                         <button className="btn btn-warning w-100 mb-4"onClick={()=>filterResult('Moisturizers')}>Moisturizers</button>
                         <button className="btn btn-warning w-100 mb-4"onClick={()=>filterResult('Skin Care')}>Skin Care</button>
                         <button className="btn btn-warning w-100 mb-4"onClick={()=>filterResult('Cleansers')}>Cleansers</button>
-                        <button className="btn btn-warning w-100 mb-4"onClick={()=>setData(Categories)}>All</button>
+                        <button className="btn btn-warning w-100 mb-4"onClick={()=>setData(product)}>All</button>
                     </div>
                     <div className="col-md-9">
                         <div className="row">
-                            {data.map((values)=> {
-                                const{id,title,price,image}=values;
+                            {data.map((product)=> {
+                               
                                 return(
                                     <>
-                                    <div className="col-md-4 mb-4" key={id}>
+                                    <div className="col-md-4 mb-4" key={product.id}>
                                 <div className="card">
-                                    <img className="card-img-top" src={image} alt=""/>
+                                    
                                     <div className="card-body">
-                                        <h5 className="card-title">{title}</h5>
-                                        <p>Price : {price}/- </p> 
-                                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                        <button className="btn btn-dark">Buy now</button>
+                                        <h5 className="card-title">{product.name}</h5>
+                                        <p>Price : ${product.price}</p> 
+                                        <p className="card-text">{product.description}</p>
+                                        <button className="btn btn-dark">view</button>
                                     </div>
                                 </div>
                             </div></>

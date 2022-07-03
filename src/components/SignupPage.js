@@ -95,7 +95,6 @@ const Signup = ({ handlePageState }) => {
           name="address"
           value={user.address}
           onChange={handelChange}
-          max={10}
           className="bg-transparent border-b focus:outline-none mt-5"
           placeholder="Address"
         />

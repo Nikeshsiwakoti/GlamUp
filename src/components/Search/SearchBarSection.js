@@ -68,7 +68,7 @@ const SearchBarSection = () => {
 
   return (
     <div className="searchBarSection">
-      <div class="searchBar">
+      <div class="searchBar mb-10">
         <input
           className="input"
           onChange={(e) => {
@@ -92,7 +92,7 @@ const SearchBarSection = () => {
           </svg>
         </button>
       </div>
-      <div className="display">
+      <div className="display ">
         {filteredProducts.map((product) => (
           
           <ProductCard

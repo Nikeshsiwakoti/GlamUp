@@ -79,8 +79,14 @@ export const AddProducts = () => {
 
         if (result12.data.success) {
         }
-        alert("Product Added succsessfullly!!");
-        navigation("/dashboard/addproducts")
+        Swal.fire({
+
+          icon: 'success',
+          title: 'Product has been added',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        window.location="/dashboard/addproducts"
       })
       .catch();
   };
@@ -88,6 +94,15 @@ export const AddProducts = () => {
   const deleteProduct = (id) => {
 
     axios.delete("http://localhost:1026/product/delete/" + id)
+    Swal.fire({
+
+      icon: 'success',
+      title: 'Product has been deleted',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    window.location="/dashboard/addproducts"
+
   }
 
   useEffect(() => {
