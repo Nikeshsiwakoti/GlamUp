@@ -24,7 +24,7 @@ const LoginPage = ({ handlePageState }) => {
     e.preventDefault();
     const {  email,  password} = user
     if ( email &&  password) {
-      axios.post("http://localhost:1026/user/login", user).then(res => {
+      axios.post("http://localhost:1025/user/login", user).then(res => {
         
         if (res.data.isAdmin===false) {
           localStorage.setItem('token',res.data.accessToken)

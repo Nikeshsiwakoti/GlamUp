@@ -15,7 +15,7 @@ const ForgotPassword = ({ handlePageState }) => {
     
     e.preventDefault();
     axios
-      .post("http://localhost:1026/user/emailcheck",{email:email})
+      .post("http://localhost:1025/user/emailcheck",{email:email})
       .then((result) => {
        
         if (result.data) {

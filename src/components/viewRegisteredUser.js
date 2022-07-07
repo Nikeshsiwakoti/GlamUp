@@ -25,12 +25,12 @@ export const ViewUser = () => {
 
      
     const deleteuser =(id)=>{
-      axios.delete("http://localhost:1026/user/deleteuser/"+id)
+      axios.delete("http://localhost:1025/user/deleteuser/"+id)
       window.location="/dashboard/registereduser"
     }
 
     useEffect(()=>{
-        axios.get("http://localhost:1026/user/details")
+        axios.get("http://localhost:1025/user/details")
         .then(result=>{
             
                 console.log(result.data)

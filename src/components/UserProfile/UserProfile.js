@@ -31,7 +31,7 @@ const ProfileScreen = () => {
 
 
         if (fullname && email && contact && address) {
-            axios.put("http://localhost:1026/user/update/" + user.id, { fullname, email, contact, address }).then(res => {
+            axios.put("http://localhost:1025/user/update/" + user.id, { fullname, email, contact, address }).then(res => {
                 console.log(res);
                 if (res.data.message === "User Profile Updated") {
 
@@ -55,7 +55,7 @@ const ProfileScreen = () => {
         fd.append("image", image)
 
 
-        axios.put("http://localhost:1026/user/update-profile/" + user.id, fd).then(res => {
+        axios.put("http://localhost:1025/user/update-profile/" + user.id, fd).then(res => {
             console.log(res);
 
             if (res.data.message === "User Profile Picture Uploaded") {
@@ -84,7 +84,7 @@ const ProfileScreen = () => {
                                     <div className="col-md-4 bg-c-lite-green user-profile">
                                         <div className="card-block text-center text-white">
                                             <div className="m-b-25">
-                                                <img src={`http://localhost:1026/${user.image}`} className="img-radius" alt="User-Profile-Image" />
+                                                <img src={`http://localhost:1025/${user.image}`} className="img-radius" alt="User-Profile-Image" />
                                             </div>
                                             <button className="mt-8  bg-[#5E73E1] text-white font-semibold rounded-2xl py-3 w-28 mx-auto transition-all ease-in-out duration-300 hover:bg-blue-800 hover:-translate-y-3" data-bs-toggle="modal" data-bs-target="#picture">Update Picture</button>
                                             <p></p>

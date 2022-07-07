@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const FeaturedProducts = () => {
   const [product , setProduct] = React.useState([])
   React.useEffect(()=>{
-    axios.get('http://localhost:1026/product/get').then((res)=>{
+    axios.get('http://localhost:1025/product/get').then((res)=>{
       setProduct(res.data.data)
       console.log(res.data.data)
     }).catch(e=>{

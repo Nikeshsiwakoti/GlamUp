@@ -23,7 +23,7 @@ const Otp = () => {
         e.preventDefault()
         // const { email,verificationcode } = user
         if ( verificationcode) {
-        axios.post('http://localhost:1026/user/emailverification', 
+        axios.post('http://localhost:1025/user/emailverification', 
             {
                email,
                verificationcode:verificationcode

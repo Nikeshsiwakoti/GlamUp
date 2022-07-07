@@ -37,7 +37,7 @@ const ProductView = () => {
 
   const deletecomment = (e, commentId) => {
     e.preventDefault();
-    axios.delete("http://localhost:1026/product/comment/delete/" + commentId)
+    axios.delete("http://localhost:1025/product/comment/delete/" + commentId)
 
 
   };
@@ -49,7 +49,7 @@ const ProductView = () => {
 
 
     axios
-      .post("http://localhost:1026/product/comment/add", adata)
+      .post("http://localhost:1025/product/comment/add", adata)
       .then((result12) => {
 
         if (result12.data) {
@@ -69,13 +69,13 @@ const ProductView = () => {
   const [product, setProduct] = React.useState('')
 
   React.useEffect(() => {
-    axios.get('http://localhost:1026/product/view/' + id).then((res) => {
+    axios.get('http://localhost:1025/product/view/' + id).then((res) => {
       setProduct(res.data.data)
     }).catch(e => {
       console.log(e);
     })
 
-    axios.get("http://localhost:1026/product/comment/view/" + id).then((result) => {
+    axios.get("http://localhost:1025/product/comment/view/" + id).then((result) => {
       console.log(result);
       setProdata(result.data);
     }).catch((e) => {
@@ -90,7 +90,7 @@ const ProductView = () => {
   const addtoCart = async (e, productId) => {
     e.preventDefault()
     try {
-      const res = await axios.put(`http://localhost:1026/user/addtocart/${productId}`, {
+      const res = await axios.put(`http://localhost:1025/user/addtocart/${productId}`, {
         user
       })
       if (res) {
@@ -116,7 +116,7 @@ const ProductView = () => {
             <img
               alt="productImg"
               className="lg:w-1/2 w-full lg:h-auto h-50 object-cover object-center rounded"
-              src={`http://localhost:1026/${product.image}`}
+              src={`http://localhost:1025/${product.image}`}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
 
@@ -129,7 +129,7 @@ const ProductView = () => {
               </h2>
               <div className="flex mb-4">
                 <span className="flex items-center">
-                  <svg
+                  {/* <svg
                     fill="currentColor"
                     stroke="currentColor"
                     strokeLinecap="round"
@@ -137,10 +137,10 @@ const ProductView = () => {
                     strokeWidth="2"
                     className="w-4 h-4 text-indigo-500"
                     viewBox="0 0 24 24"
-                  >
+                  > 
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <svg
+                  </svg> */}
+                  {/* <svg
                     fill="currentColor"
                     stroke="currentColor"
                     strokeLinecap="round"
@@ -184,7 +184,7 @@ const ProductView = () => {
                   >
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
                   </svg>
-                  <span className="text-gray-600 ml-3">4 Reviews</span>
+                  <span className="text-gray-600 ml-3">4 Reviews</span> */}
                 </span>
                 <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                   <a className="text-gray-500">
@@ -313,7 +313,7 @@ const ProductView = () => {
             <div>
               <div className="d-flex">
                 <img
-                  src={"http://localhost:1026/" + singledata.user?.profile}
+                  src={"http://localhost:1025/" + singledata.user?.profile}
                   className="imagesss rounded-circle p-2 m-3"
                 />
 

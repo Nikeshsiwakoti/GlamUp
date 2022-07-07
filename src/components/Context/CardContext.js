@@ -7,7 +7,7 @@ export const Cartprovider = (props) => {
 
     useEffect(() => {
         const getcart = () => {
-            axios.get("http://localhost:1026/user/cart").then(data => {
+            axios.get("http://localhost:1025/user/cart").then(data => {
                 setContextCart(data.data.data)
             }).catch(e => {
                 console.log(e)

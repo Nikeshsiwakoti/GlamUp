@@ -16,7 +16,7 @@ import {AiOutlineUsergroupAdd} from 'react-icons/ai';
 export const ViewOrders = () => {
     
 const deleteorder =(id)=>{
-  axios.delete("http://localhost:1026/order/delete/"+id)
+  axios.delete("http://localhost:1025/order/delete/"+id)
 }
     
     const logout=()=>{
@@ -26,7 +26,7 @@ const deleteorder =(id)=>{
 const[order,setOrder]=useState([]);
 
 useEffect(()=>{
-    axios.get("http://localhost:1026/orders")
+    axios.get("http://localhost:1025/orders")
     .then(result=>{
         
             console.log(result.data)

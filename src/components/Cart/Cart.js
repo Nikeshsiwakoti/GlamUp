@@ -55,7 +55,7 @@ const CartView = () => {
     e.preventDefault();
     // const {  email,  password} = user
 
-      axios.put("http://localhost:1026/user/emptycart", {user:user.id,cart:cart}).then(res => {
+      axios.put("http://localhost:1025/user/emptycart", {user:user.id,cart:cart}).then(res => {
         
         window.location="/cart"
         
@@ -67,7 +67,7 @@ const CartView = () => {
     e.preventDefault();
     // const {  email,  password} = user
 
-      axios.post("http://localhost:1026/user/checkout", {user:user.id,cart:cart}).then(res => {
+      axios.post("http://localhost:1025/user/checkout", {user:user.id,cart:cart}).then(res => {
         console.log(res.data)
         navigation("/")
         Swal.fire({
@@ -80,7 +80,7 @@ const CartView = () => {
 console.log(cart)
   React.useEffect(()=>{
   
-    axios.get("http://localhost:1026/user/cart").then((res)=>{
+    axios.get("http://localhost:1025/user/cart").then((res)=>{
       setCartItems(res.data.data)
       console.log(res.data.data)
     }).catch(e=>{
@@ -129,7 +129,7 @@ console.log(cart)
               <div className="col-span-5 h-auto flex items-center gap-3">
                 {/* Image of Product */}
                 <div
-                  src={`http://localhost:1026/${item.productId.image}`}
+                  src={`http://localhost:1025/${item.productId.image}`}
                   className="rounded shadow-md w-16 h-16 object-cover"
                   alt="itemImage"
                 />

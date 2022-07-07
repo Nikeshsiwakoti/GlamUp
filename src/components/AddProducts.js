@@ -41,7 +41,7 @@ export const AddProducts = () => {
     const adata ={
        brandname, name, description, category, price, image
     }
-      axios.put("http://localhost:1026/product/edit/" + productid,  adata ).then(res => {
+      axios.put("http://localhost:1025/product/edit/" + productid,  adata ).then(res => {
         console.log(res);
         if (res.data.message === "Product Updated") {
           window.location="/dashboard/addproducts"
@@ -73,7 +73,7 @@ export const AddProducts = () => {
 
     console.log(adata);
     axios
-      .post("http://localhost:1026/product/add", adata)
+      .post("http://localhost:1025/product/add", adata)
       .then((result12) => {
         console.log(result12.data.success);
 
@@ -93,7 +93,7 @@ export const AddProducts = () => {
 
   const deleteProduct = (id) => {
 
-    axios.delete("http://localhost:1026/product/delete/" + id)
+    axios.delete("http://localhost:1025/product/delete/" + id)
     Swal.fire({
 
       icon: 'success',
@@ -107,7 +107,7 @@ export const AddProducts = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:1026/product/get")
+      .get("http://localhost:1025/product/get")
       .then((result) => {
         console.log(result);
         setProdata(result.data.data);

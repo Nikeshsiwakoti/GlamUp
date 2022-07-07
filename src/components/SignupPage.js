@@ -25,7 +25,7 @@ const Signup = ({ handlePageState }) => {
     e.preventDefault()
     const { fullname, email, contact, address, password } = user
     if (fullname && email && contact && address && password) {
-      axios.post("http://localhost:1026/user/register", user).then(res => {
+      axios.post("http://localhost:1025/user/register", user).then(res => {
         console.log(res);
         if (res.data.message === "User Registered") {
           navigation('/otp', { state: { email: user.email } })

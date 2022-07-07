@@ -18,7 +18,7 @@ export default function Newpassword() {
 
   const updatePassword = (e) => {
     e.preventDefault();
-    axios.put("http://localhost:1026/user/updatepassword",{email:email.get('email'),password:password})
+    axios.put("http://localhost:1025/user/updatepassword",{email:email.get('email'),password:password})
     .then(result=>{
     if(result.data){
       navigation("/login")
