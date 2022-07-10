@@ -30,7 +30,7 @@ const CartView = () => {
 
   const [quantity, setQuantity] = useState(1);
   const [cart, setCart] = React.useContext(CartContext)
-  const [CartItems, setCartItems] = React.useState([ {
+  const [CartItems, setCartItems] = React.useState([{
     id: 1,
     image: ItemImage,
     name: "Face Wash",
@@ -51,54 +51,61 @@ const CartView = () => {
     price: "Rs. 800",
     quantity: 1,
   },])
-  const ClearCart = async(e) => {
+  const ClearCart = async (e) => {
     e.preventDefault();
     // const {  email,  password} = user
 
-      axios.put("http://localhost:1025/user/emptycart", {user:user.id,cart:cart}).then(res => {
-        
-        window.location="/cart"
-        
-        
+    axios.put("http://localhost:1025/user/emptycart", { user: user.id, cart: cart }).then(res => {
+
+      window.location = "/cart"
+
+
     })
   }
 
-  const Checkout = async(e) => {
+  const Checkout = async (e) => {
     e.preventDefault();
     // const {  email,  password} = user
 
-      axios.post("http://localhost:1025/user/checkout", {user:user.id,cart:cart}).then(res => {
-        console.log(res.data)
-        navigation("/")
-        Swal.fire({
-          icon:"success",
-          title:"Order Placed Successfully"
-        })
-        
+    axios.post("http://localhost:1025/user/checkout", { user: user.id, cart: cart }).then(res => {
+      console.log(res.data)
+      navigation("/")
+      Swal.fire({
+        icon: "success",
+        title: "Order Placed Successfully"
+      })
+
     })
   }
-console.log(cart)
-  React.useEffect(()=>{
-  
-    axios.get("http://localhost:1025/user/cart").then((res)=>{
+  console.log(cart)
+  React.useEffect(() => {
+
+    axios.get("http://localhost:1025/user/cart").then((res) => {
       setCartItems(res.data.data)
       console.log(res.data.data)
-    }).catch(e=>{
+    }).catch(e => {
       console.log(e);
     })
-  },[])
-    
- 
+  }, [])
+
+
 
   const handleAdd = () => {
     setQuantity(quantity + 1);
   };
 
   const handleSubstract = () => {
-    setQuantity(quantity - 1);
+    let newQuantity = quantity - 1
+    if (newQuantity <= 0) {
+      setQuantity(0);
+    }
+    else {
+      setQuantity(newQuantity);
+    }
+
   };
 
-  
+
 
   return (
     <div className="w-full h-screen p-10">
@@ -121,77 +128,77 @@ console.log(cart)
         <div className="flex flex-col gap-3 mb-5">
           {cart.map((item) => (
             <div className="mb-2">
-            <div
-              key={item._id} 
-              className="grid grid-cols-12 gap-4 bg-gray-100 shadow-sm rounded-xl p-3"
-            >
-              {/* Item Image and Name */}
-              <div className="col-span-5 h-auto flex items-center gap-3">
-                {/* Image of Product */}
-                <div
-                  src={`http://localhost:1025/${item.productId.image}`}
-                  className="rounded shadow-md w-16 h-16 object-cover"
-                  alt="itemImage"
-                />
+              <div
+                key={item._id}
+                className="grid grid-cols-12 gap-4 bg-gray-100 shadow-sm rounded-xl p-3"
+              >
+                {/* Item Image and Name */}
+                <div className="col-span-5 h-auto flex items-center gap-3">
+                  {/* Image of Product */}
+                  <img
+                    src={`http://localhost:1025/${item.productId.image}`}
+                    className="rounded shadow-md w-16 h-16 object-cover"
+                    alt="itemImage"
+                  />
 
-                {/* Name of Product */}
-                <p className="text-gray-700 font-semibold">{item.productId.name}</p>
-              </div>
-
-              {/* Quantity */}
-              <div className="col-span-3 flex justify-center items-center gap-3">
-                <button onClick={() => handleAdd(item.quantity).bind(this, item._id)}>
-                  <FiPlus />
-                </button>
-
-                <div className="flex justify-center items-center w-9 h-9 border-2 border-gray-400 shadow-sm rounded-xl">
-                  <p className="text-sm">{quantity}</p>
+                  {/* Name of Product */}
+                  <p className="text-gray-700 font-semibold">{item.productId.name}</p>
                 </div>
 
-                <button onClick={() => handleSubstract(quantity).bind(this, item._id)}>
-                  <FiMinus />
-                </button>
+                {/* Quantity */}
+                <div className="col-span-3 flex justify-center items-center gap-3">
+                  <button onClick={() => handleAdd().bind(this, item._id)}>
+                    <FiPlus />
+                  </button>
+
+                  <div className="flex justify-center items-center w-9 h-9 border-2 border-gray-400 shadow-sm rounded-xl">
+                    <p className="text-sm mt-3">{quantity}</p>
+                  </div>
+
+                  <button onClick={() => handleSubstract().bind(this, item._id)}>
+                    <FiMinus />
+                  </button>
+                </div>
+
+                {/* Price */}
+                <div className="col-span-3 flex justify-center items-center">
+                  <p className="font-semibold ">${item.productId.price}</p>
+                </div>
+
+                {/* Delete */}
+                <div className="col-span-1 flex justify-center items-center">
+                  <button className="bg-red-600 w-10 h-10 rounded-xl flex justify-center items-center">
+                    <MdDelete className="text-white" size={20} />
+                  </button>
+                </div>
               </div>
 
-              {/* Price */}
-              <div className="col-span-3 flex justify-center items-center">
-                <p className="font-semibold ">${item.productId.price}</p>
-              </div>
-
-              {/* Delete */}
-              <div className="col-span-1 flex justify-center items-center">
-                <button className="bg-red-600 w-10 h-10 rounded-xl flex justify-center items-center">
-                  <MdDelete className="text-white" size={20} />
-                </button>
-              </div> 
-              </div> 
-              
             </div>
-            
-            
+
+
           ))}
         </div>
 
         {/* Total */}
-        {cart.map((item) => ( 
+        {cart.map((item) => (
           <div className="mt-4 border-t-2 border-dotted w-full h-auto pt-3 flex flex-row-reverse">
             <h3 className="font-semibold ">Total: ${item.productId.price * item.quantity}</h3>
           </div>
         ))}
         <button
-            className="px-3 rounded-xl shadow-sm py-2 bg-red-600 text-white"
-            onClick={Checkout}
-          >Check Out</button>
+          className="px-3 rounded-xl shadow-sm py-2 bg-red-600 text-white"
+          onClick={Checkout}
+        >Check Out</button>
 
         <button
-            className="px-3 rounded-xl shadow-sm py-2 bg-red-600 text-white"
-            
-          >
-            
+          className="px-3 rounded-xl shadow-sm py-2 bg-red-600 text-white"
+
+        >
 
 
-            <Khalti/>
-          </button>
+
+          <Khalti />
+        </button>
       </div>
       <MyFooter />
     </div>

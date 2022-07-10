@@ -70,7 +70,8 @@ const SearchBarSection = () => {
     <div className="searchBarSection">
       <div class="searchBar mb-10">
         <input
-          className="input"
+          className="input pl-2"
+          placeholder="Search Products"
           onChange={(e) => {
             setSearch(e.target.value.toLowerCase());
           }}
@@ -92,7 +93,7 @@ const SearchBarSection = () => {
           </svg>
         </button>
       </div>
-      <div className="display ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredProducts.map((product) => (
           
           <ProductCard

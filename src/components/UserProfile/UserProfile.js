@@ -73,7 +73,7 @@ const ProfileScreen = () => {
     }
 
     return (
-        <div >
+        <div className="w-full h-screen p-10">
             <Navbar />
             <div className="page-content page-container" id="page-content">
                 <div className="padding">

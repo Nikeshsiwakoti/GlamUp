@@ -12,8 +12,8 @@ function App() {
 
 
   return (
-    <div className="container mx-auto overflow-hidden">
-      <div className="w-full h-screen grid grid-cols-1 md:grid-cols-2 container">
+    <div className="overflow-hidden">
+      <div className="w-full h-screen grid grid-cols-1 md:grid-cols-2">
         {/* Banner Image */}
         <div className="hidden md:block md:col-span-1 h-full bg-blue-500 -skew-x-6 shadow-gray-800 -ml-16 shadow-2xl">
           <img

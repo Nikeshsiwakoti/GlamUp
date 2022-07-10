@@ -284,7 +284,6 @@ const ProductView = () => {
         </div>
       </section>
 
-
       <div>
         <div class="form-group">
           <ReactStars
@@ -308,63 +307,61 @@ const ProductView = () => {
 
           >Post</button>
         </div>
-      </div>
 
-      {prodata?.map((singledata) => {
-        return (
-          <div>
-            <di className="d-flex">
-              <img
-                src={"http://localhost:1025/" + singledata.user?.profile}
-                className="imagesss rounded-circle p-2 m-3"
-              />
+        {prodata?.map((singledata) => {
+          return (
+            <div>
+              <div className="d-flex">
+                <img
+                  src={"http://localhost:1025/" + singledata.user?.profile}
+                  className="imagesss rounded-circle p-2 m-3"
+                />
+                <div className="flex items-center w-full">
+                  <div className="flex flex-col w-[90%]">
+                    <h5 className="pl-1 pt-4">{singledata.user.fullname}</h5>
 
-
-              <div className="flex items-center">
-                <div className="flex flex-col">
-                  <h5 className="pl-1 pt-4">{singledata.user.fullname}</h5>
-                  {
-                    singledata.star === 1 ?
-                      <i className="fas fa-star"></i> :
-                      singledata.star === 2 ?
-                        <><i className="fas fa-star"></i>
-                          <i className="fas fa-star"></i></> :
-                        singledata.star === 3 ?
-                          <><i className="fas fa-star"></i>
-                            <i className="fas fa-star">
-                            </i><i className="fas fa-star"></i></> :
-                          singledata.star === 4 ?
+                    <div className="flex gap-2 items-center">
+                      {
+                        singledata.star === 1 ?
+                          <i className="fas fa-star"></i> :
+                          singledata.star === 2 ?
                             <><i className="fas fa-star"></i>
-                              <i className="fas fa-star"> </i>
-                              <i className="fas fa-star"></i>
                               <i className="fas fa-star"></i></> :
-                            singledata.star === 5 ?
+                            singledata.star === 3 ?
                               <><i className="fas fa-star"></i>
-                                <i className="fas fa-star"> </i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i>
-                                <i className="fas fa-star"></i></> : null
-                  }
+                                <i className="fas fa-star">
+                                </i><i className="fas fa-star"></i></> :
+                              singledata.star === 4 ?
+                                <><i className="fas fa-star"></i>
+                                  <i className="fas fa-star"> </i>
+                                  <i className="fas fa-star"></i>
+                                  <i className="fas fa-star"></i></> :
+                                singledata.star === 5 ?
+                                  <><i className="fas fa-star"></i>
+                                    <i className="fas fa-star"> </i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i>
+                                    <i className="fas fa-star"></i></> : null
+                      }
+                    </div>
+
+                    <p className="mt-3">{singledata.message}</p>
+
+                  </div>
+
+                  <div className="w-[10%]">
+                    <button className="bg-black w-7 h-7 rounded-xl flex justify-center items-center mt-5" onClick={deletecomment.bind(this,)}>
+                      <MdDeleteOutline className="text-white" size={20} />
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div className="float-right flag">
-                <button className="bg-black w-7 h-7 rounded-xl flex justify-center items-center mt-5" onClick={deletecomment.bind(this,)}>
-                  <MdDeleteOutline className="text-white" size={20} />
-                </button>
-              </div>
-            </di>
-
-            <p>{singledata.message}</p>
-
-
-
-
-
-          </div>
-        )
-      }
+            </div>
+          );
+        })}
+      </div >
       <MyFooter />
-    </div>
+    </div >
   );
 };
 

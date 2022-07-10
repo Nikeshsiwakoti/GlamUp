@@ -3,14 +3,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import "../pages/Dashboard/dash.css";
-import { Link, useNavigate,useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { TiTickOutline } from "react-icons/ti";
 import { ImCross } from "react-icons/im";
 import Swal from "sweetalert2";
 
 export const AddProducts = () => {
-  const navigation=useNavigate();
-  
+  const navigation = useNavigate();
+
   const logout = () => {
     localStorage.clear();
     window.location.replace("/");
@@ -21,7 +21,7 @@ export const AddProducts = () => {
       Authorization: "Bearer " + localStorage.getItem("t"),
     },
   };
-  
+
   const [prodata, setProdata] = useState([]);
 
   const [brandname, setBrandname] = useState("");
@@ -30,32 +30,32 @@ export const AddProducts = () => {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [image, setimage] = useState("");
-  const [productid,setProductId]=useState();
-  
+  const [productid, setProductId] = useState();
+
 
 
 
   const updateproduct = () => {
-    
 
-    const adata ={
-       brandname, name, description, category, price, image
+
+    const adata = {
+      brandname, name, description, category, price, image
     }
-      axios.put("http://localhost:1025/product/edit/" + productid,  adata ).then(res => {
-        console.log(res);
-        if (res.data.message === "Product Updated") {
-          window.location="/dashboard/addproducts"
-          Swal.fire({
+    axios.put("http://localhost:1025/product/edit/" + productid, adata).then(res => {
+      console.log(res);
+      if (res.data.message === "Product Updated") {
+        window.location = "/dashboard/addproducts"
+        Swal.fire({
 
-            icon: 'success',
-            title: 'Product has been updated',
-            showConfirmButton: false,
-            timer: 1500
-          })
-        }
+          icon: 'success',
+          title: 'Product has been updated',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
 
-      })
-    
+    })
+
   }
 
   const addproduct = (e) => {
@@ -86,7 +86,7 @@ export const AddProducts = () => {
           showConfirmButton: false,
           timer: 1500
         })
-        window.location="/dashboard/addproducts"
+        window.location = "/dashboard/addproducts"
       })
       .catch();
   };
@@ -101,7 +101,7 @@ export const AddProducts = () => {
       showConfirmButton: false,
       timer: 1500
     })
-    window.location="/dashboard/addproducts"
+    window.location = "/dashboard/addproducts"
 
   }
 
@@ -123,17 +123,17 @@ export const AddProducts = () => {
     <>
       <div className="d-flex" id="wrapper">
         {/* Sidebar */}
-      <div className="bg-white" id="sidebar-wrapper">
-        <div className="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i className="fas fa-user-secret me-2" />Glamup</div>
-        <div className="list-group list-group-flush my-3">
-          <Link to="/dashboard" className="list-group-item list-group-item-action bg-transparent second-text active"><i className="fas fa-tachometer-alt me-2" />Dashboard</Link>
-          <Link to="/dashboard/addproducts" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-plus me-2" />Add Products</Link>
-          <Link to="/dashboard/orders" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fab fa-first-order me-2" />View Orders</Link>
-          <Link to="/dashboard/registereduser" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-users me-2" />View Registered Users</Link>
-          <Link to="#" className="list-group-item list-group-item-action bg-transparent text-danger fw-bold" onClick={logout}><i className="fas fa-power-off me-2" />Logout</Link>
+        <div className="bg-white" id="sidebar-wrapper">
+          <div className="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i className="fas fa-user-secret me-2" />Glamup</div>
+          <div className="list-group list-group-flush my-3">
+            <Link to="/dashboard" className="list-group-item list-group-item-action bg-transparent second-text active"><i className="fas fa-tachometer-alt me-2" />Dashboard</Link>
+            <Link to="/dashboard/addproducts" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-plus me-2" />Add Products</Link>
+            <Link to="/dashboard/orders" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fab fa-first-order me-2" />View Orders</Link>
+            <Link to="/dashboard/registereduser" className="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i className="fas fa-users me-2" />View Registered Users</Link>
+            <Link to="#" className="list-group-item list-group-item-action bg-transparent text-danger fw-bold" onClick={logout}><i className="fas fa-power-off me-2" />Logout</Link>
+          </div>
         </div>
-      </div>
-      {/* /#sidebar-wrapper */}
+        {/* /#sidebar-wrapper */}
         {/* Page Content */}
         <div id="page-content-wrapper">
           <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
@@ -206,7 +206,7 @@ export const AddProducts = () => {
                     <input
                       type="text"
                       id="brandname"
-                      className="form-control border-b focus:outline-none "
+                      className="form-control border-b focus:outline-none"
                       placeholder="brandname"
                       value={brandname}
                       onChange={(e) => setBrandname(e.target.value)}
@@ -302,66 +302,66 @@ export const AddProducts = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div className="modal-body">
-                            
-                              <input
-                                type="text"
-                                name="brandname"
-                                className="bg-transparent border-b focus:outline-none"
-                                placeholder="brandname"
-                                value={brandname}
-                                onChange={e => setBrandname(e.target.value)}
-                              />
-                            
 
-                            
-                              <input
-                                type="text"
-                                className="bg-transparent border-b focus:outline-none"
-                                placeholder="name"
-                                name="name"
-                                value={name}
-                                onChange={e => setName(e.target.value)}
-                              />
-                            
+                            <input
+                              type="text"
+                              name="brandname"
+                              className="bg-transparent border-b focus:outline-none"
+                              placeholder="brandname"
+                              value={brandname}
+                              onChange={e => setBrandname(e.target.value)}
+                            />
 
-                            
-                              <input
-                                type="text"
-                                className="bg-transparent border-b focus:outline-none"
-                                placeholder="description"
-                                name="description"
-                                value={description}
-                                onChange={e => setDescription(e.target.value)}
-                              />
-                            
-                            
-                              <input
-                                type="text"
-                                className="bg-transparent border-b focus:outline-none"
-                                placeholder="category"
-                                name="category"
-                                value={category}
-                                onChange={e => setCategory(e.target.value)}
-                              />
-                            
 
-                           
-                              <input
-                                type="text"
-                                className="bg-transparent border-b focus:outline-none"
-                                name="price"
-                                placeholder="price"
-                                value={price}
-                                onChange={e => setPrice(e.target.value)}
-                              />
-                            
-                            
-                              <input
-                                type="file"
-                                className="form-control"
-                                onChange={e => setimage(e.target.files[0])}
-                              />
-                           
+
+                            <input
+                              type="text"
+                              className="bg-transparent border-b focus:outline-none"
+                              placeholder="name"
+                              name="name"
+                              value={name}
+                              onChange={e => setName(e.target.value)}
+                            />
+
+
+
+                            <input
+                              type="text"
+                              className="bg-transparent border-b focus:outline-none"
+                              placeholder="description"
+                              name="description"
+                              value={description}
+                              onChange={e => setDescription(e.target.value)}
+                            />
+
+
+                            <input
+                              type="text"
+                              className="bg-transparent border-b focus:outline-none"
+                              placeholder="category"
+                              name="category"
+                              value={category}
+                              onChange={e => setCategory(e.target.value)}
+                            />
+
+
+
+                            <input
+                              type="text"
+                              className="bg-transparent border-b focus:outline-none"
+                              name="price"
+                              placeholder="price"
+                              value={price}
+                              onChange={e => setPrice(e.target.value)}
+                            />
+
+
+                            <input
+                              type="file"
+                              className="form-control"
+                              onChange={e => setimage(e.target.files[0])}
+                            />
+
                           </div>
                           <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -370,14 +370,14 @@ export const AddProducts = () => {
                         </div>
                       </div>
                     </div>
-                    <button type="button" className="btn btn-warning ml-5 mt-2" data-bs-toggle="modal" data-bs-target="#updateproduct" onClick={()=>{
+                    <button type="button" className="btn btn-warning ml-5 mt-2" data-bs-toggle="modal" data-bs-target="#updateproduct" onClick={() => {
                       setBrandname(singleData.brandname)
                       setName(singleData.name)
                       setDescription(singleData.description)
                       setCategory(singleData.category)
                       setPrice(singleData.price)
                       setProductId(singleData._id)
-                      }}>Update</button>
+                    }}>Update</button>
                     <button type="button" className="btn btn-warning ml-5 mt-2" onClick={deleteProduct.bind(this, singleData._id)}>Delete</button>
                   </div>
                 );
