@@ -180,11 +180,11 @@ const CartView = () => {
         </div>
 
         {/* Total */}
-        {cart.map((item) => (
-          <div className="mt-4 border-t-2 border-dotted w-full h-auto pt-3 flex flex-row-reverse">
-            <h3 className="font-semibold ">Total: ${item.productId.price * item.quantity}</h3>
-          </div>
-        ))}
+        <div className="mt-4 border-t-2 border-dotted w-full h-auto pt-3 flex flex-row-reverse">
+          <h3 className="font-semibold ">Total: ${cart?.reduce((acc, curr) => {
+            return acc + curr?.productId.price * curr?.quantity
+          }, 0)}</h3>
+        </div>
         <button
           className="px-3 rounded-xl shadow-sm py-2 bg-red-600 text-white"
           onClick={Checkout}

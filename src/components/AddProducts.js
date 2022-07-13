@@ -309,7 +309,7 @@ export const AddProducts = () => {
                               className="bg-transparent border-b focus:outline-none"
                               placeholder="brandname"
                               value={brandname}
-                              onChange={e => setBrandname(e.target.value)}
+                              onChange={(e) => setBrandname(e.target.value)}
                             />
 
 
