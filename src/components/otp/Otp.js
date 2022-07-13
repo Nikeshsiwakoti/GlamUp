@@ -66,7 +66,7 @@ const Otp = () => {
             <div style={{ marginTop: "100px" }} className="container">
                 <div className="d-flex justify-content-center align-items-center container">
                     <div className="card py-5 px-3">
-                        <h5 className="m-0 h4">OPT verification</h5><span className="mobile-text">Enter the code we just send on your email&nbsp;<b className="text-danger"></b></span>
+                        <h5 className="m-0 h4">OTP verification</h5><span className="mobile-text">Enter the code we just send on your email&nbsp;<b className="text-danger"></b></span>
                         <form method='post' id="create-course-form" >
                             <div className="d-flex flex-row mt-5">
                                 <input name='verificationcode' value={verificationcode} onChange={e=>setCode(e.target.value)} type="text" className="form-control otp1"  />
